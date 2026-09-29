@@ -8,10 +8,11 @@ const tbody = document.querySelector("#town-rows");
 const count = document.querySelector("#result-count");
 const mapCount = document.querySelector("#map-count");
 const empty = document.querySelector("#empty-state");
-const sortButton = document.querySelector("#sort-rate");
+const sortButtons = [...document.querySelectorAll("[data-sort]")];
 const markers = new Map();
 let towns = [];
-let direction = -1;
+let sortKey = "rate";
+let sortDirection = -1;
 let selectedCode = null;
 let map;
 
@@ -44,7 +45,18 @@ function addLegend() {
 function renderTable() {
   const query = normalized(search.value.trim());
   const shown = towns.filter((town) => normalized(town.name).includes(query));
-  shown.sort((a, b) => direction * (a.rate - b.rate) || a.name.localeCompare(b.name, "he"));
+  const sortValue = {
+    name: (town) => town.name,
+    rate: (town) => town.rate,
+    cap: (town) => town.cap,
+    credit: (town) => town.cap * town.rate / 100,
+  }[sortKey];
+  shown.sort((a, b) => {
+    const left = sortValue(a);
+    const right = sortValue(b);
+    const order = typeof left === "string" ? left.localeCompare(right, "he") : left - right;
+    return sortDirection * order || a.name.localeCompare(b.name, "he");
+  });
   tbody.replaceChildren();
   const fragment = document.createDocumentFragment();
   for (const town of shown) {
@@ -138,12 +150,23 @@ function initMap() {
   mapCount.textContent = `${money.format(bounds.length)} מתוך ${money.format(towns.length)} יישובים מוצגים`;
 }
 
-sortButton.addEventListener("click", () => {
-  direction *= -1;
-  sortButton.querySelector(".sort-indicator").textContent = direction < 0 ? "↓" : "↑";
-  sortButton.closest("th").setAttribute("aria-sort", direction < 0 ? "descending" : "ascending");
+sortButtons.forEach((button) => button.addEventListener("click", () => {
+  const key = button.dataset.sort;
+  if (key === sortKey) sortDirection *= -1;
+  else {
+    sortKey = key;
+    sortDirection = key === "name" ? 1 : -1;
+  }
+  sortButtons.forEach((item) => {
+    const active = item.dataset.sort === sortKey;
+    item.querySelector(".sort-indicator").hidden = !active;
+    if (active) {
+      item.querySelector(".sort-indicator").textContent = sortDirection < 0 ? "↓" : "↑";
+      item.closest("th").setAttribute("aria-sort", sortDirection < 0 ? "descending" : "ascending");
+    } else item.closest("th").removeAttribute("aria-sort");
+  });
   renderTable();
-});
+}));
 search.addEventListener("input", renderTable);
 document.addEventListener("keydown", (event) => {
   if (event.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {

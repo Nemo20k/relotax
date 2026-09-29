@@ -1,6 +1,6 @@
 # Relotax
 
-A small, static website for exploring Israel's 2026 locality income tax credits. The public interface is in Hebrew and has two sections: an interactive map and a searchable table sorted by credit rate. There is no backend or build step.
+A small, static website for exploring Israel's 2026 locality income tax credits. The public interface is in Hebrew and has two sections: an interactive map and a searchable table with sortable data columns. There is no backend or build step.
 
 ## Run locally
 
@@ -18,7 +18,7 @@ Open <http://localhost:8000>. The site must be served over HTTP because the brow
 | --- | --- |
 | `index.html` | Hebrew, right-to-left page with the map and table sections; loads Leaflet and MapLibre GL from CDNs. |
 | `styles.css` | Responsive layout and visual styling. |
-| `app.js` | Fetches the static JSON, renders the Leaflet markers and table, and handles search, rate sorting, legend filters, and map/table selection. |
+| `app.js` | Fetches the static JSON, renders the Leaflet markers and table, and handles search, sorting by town, rate, income ceiling, or maximum credit, legend filters, and map/table selection. Rate sorts descending by default. |
 | `data/towns-2026.json` | Generated snapshot used by the browser. Each town has an ID, name, credit rate, annual eligible-income ceiling, source/page, and optional locality code and coordinates. |
 | `scripts/build_data.py` | Offline data preparation: extracts the tax tables, matches names or codes to the CBS locality register, and converts ITM coordinates to latitude/longitude. It needs `pdfplumber`; the website does not need Python. |
 
