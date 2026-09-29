@@ -136,11 +136,6 @@ function initMap() {
   }
   if (bounds.length) map.fitBounds(bounds, { padding: [18, 18], maxZoom: 7 });
   mapCount.textContent = `${money.format(bounds.length)} מתוך ${money.format(towns.length)} יישובים מוצגים`;
-  if (bounds.length < towns.length) {
-    const message = document.querySelector("#map-message");
-    message.hidden = false;
-    message.textContent = "חלק מהמיקומים חסרים בקובץ היישובים הרשמי; כל היישובים מופיעים בטבלה.";
-  }
 }
 
 sortButton.addEventListener("click", () => {
