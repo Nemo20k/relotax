@@ -16,7 +16,7 @@ Open <http://localhost:8000>. The site must be served over HTTP because the brow
 
 | File | Role |
 | --- | --- |
-| `index.html` | Hebrew, right-to-left page with the map and table sections; loads Leaflet from a CDN. |
+| `index.html` | Hebrew, right-to-left page with the map and table sections; loads Leaflet and MapLibre GL from CDNs. |
 | `styles.css` | Responsive layout and visual styling. |
 | `app.js` | Fetches the static JSON, renders the Leaflet markers and table, and handles search, rate sorting, legend filters, and map/table selection. |
 | `data/towns-2026.json` | Generated snapshot used by the browser. Each town has an ID, name, credit rate, annual eligible-income ceiling, source/page, and optional locality code and coordinates. |
@@ -28,7 +28,7 @@ The data flow is: Tax Authority PDFs + CBS locality register → `build_data.py`
 
 The current data snapshot contains 555 entries: 491 from pages 20–32 of the [2026 monthly deductions booklet](https://www.gov.il/BlobFolder/generalpage/income-tax-monthly-deductions-booklet/he/generalInformation_income-tax-monthly-deductions-booklet_monthly-deductions-booklet-2026.pdf), 63 from the Tax Authority's 2 August 2026 eastern confrontation line locality update, and Eilat's separate benefit from booklet page 18. The [Tax Authority employer information page](https://www.gov.il/he/pages/pa090124-2) lists the locality notices. The annual ceiling is a cap on eligible income, not a guaranteed refund or a cap on the credit itself.
 
-Map positions come from the [CBS 2023 localities file](https://data.gov.il/he/datasets/lamas/localities-in-israel). In this snapshot, 533 entries have coordinates; the other 22 remain searchable in the table. The map uses [Leaflet](https://leafletjs.com/) and OpenStreetMap tiles with visible attribution. Tax data is a dated snapshot and does not update automatically.
+Map positions come from the [CBS 2023 localities file](https://data.gov.il/he/datasets/lamas/localities-in-israel). In this snapshot, 533 entries have coordinates; the other 22 remain searchable in the table. The map uses [Leaflet](https://leafletjs.com/), [MapLibre GL](https://maplibre.org/), and the [OpenFreeMap Bright](https://openfreemap.org/) style, with visible OpenFreeMap, OpenMapTiles, and OpenStreetMap attribution. Tax data is a dated snapshot and does not update automatically.
 
 ### Regenerate the JSON
 

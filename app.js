@@ -1,3 +1,6 @@
+import * as L from "leaflet";
+import { maplibreGL } from "https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/dist/leaflet-maplibre-gl.mjs";
+
 const RATE_COLORS = { 7: "#718c50", 10: "#358b70", 12: "#328c9a", 14: "#4b74a8", 16: "#745fa1", 18: "#a15e83", 20: "#bd7047" };
 const money = new Intl.NumberFormat("he-IL");
 const search = document.querySelector("#search");
@@ -102,16 +105,9 @@ function focusTown(town) {
 }
 
 function initMap() {
-  if (!window.L) {
-    document.querySelector("#map-message").hidden = false;
-    document.querySelector("#map-message").textContent = "המפה לא נטענה. אפשר להשתמש בטבלה ובחיפוש.";
-    return;
-  }
   map = L.map("map", { scrollWheelZoom: false }).setView([31.4, 35.05], 7);
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
+  maplibreGL({ style: "https://tiles.openfreemap.org/styles/bright", attributionControl: false }).addTo(map);
+  map.attributionControl.addAttribution('© <a href="https://openfreemap.org/">OpenFreeMap</a> · © <a href="https://openmaptiles.org/">OpenMapTiles</a> · © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>');
   const bounds = [];
   for (const town of towns) {
     if (!town.lat || !town.lon) continue;
