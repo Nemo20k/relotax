@@ -19,6 +19,7 @@ Open <http://localhost:8000>. The site must be served over HTTP because the brow
 | `index.html` | Hebrew, right-to-left page with the map and table sections; loads Leaflet and MapLibre GL from CDNs. |
 | `styles.css` | Responsive layout and visual styling. |
 | `app.js` | Fetches the static JSON, renders the Leaflet markers and table, and handles search, sorting by town, rate, income ceiling, or maximum credit, legend filters, and map/table selection. Rate sorts descending by default. |
+| `social-preview.png` | 1200×630 social preview used by the page's Open Graph metadata. |
 | `data/towns-2026.json` | Generated snapshot used by the browser. Each town has an ID, name, credit rate, annual eligible-income ceiling, source/page, and optional locality code and coordinates. |
 | `scripts/build_data.py` | Offline data preparation: extracts the tax tables, matches names or codes to the CBS locality register, and converts ITM coordinates to latitude/longitude. It needs `pdfplumber`; the website does not need Python. |
 
@@ -43,7 +44,7 @@ The PDF arguments are local file paths. Review changes to town names, rates, cei
 
 ## Deploy
 
-The [GitHub Pages workflow](.github/workflows/deploy-pages.yml) publishes the site when changes are pushed to `main`; it can also be run manually from the Actions tab. It packages `index.html`, `styles.css`, `app.js`, and `data/` without a build step, then deploys the artifact directly. No site-configuration or data-download command runs in the workflow.
+The [GitHub Pages workflow](.github/workflows/deploy-pages.yml) publishes the site when changes are pushed to `main`; it can also be run manually from the Actions tab. It packages `index.html`, `styles.css`, `app.js`, `social-preview.png`, and `data/` without a build step, then deploys the artifact directly. No site-configuration or data-download command runs in the workflow.
 
 To enable deployment, open the repository's **Settings → Pages** and select **GitHub Actions** as the source. After pushing to `main`, the published URL appears in the workflow's deployment environment and in **Settings → Pages**.
 
