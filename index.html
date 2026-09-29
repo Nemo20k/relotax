@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7f2">
+    <meta name="description" content="מפה וטבלה של יישובים המזכים בהטבת מס בישראל לשנת 2026">
+    <title>מפת הטבות מס ביישובים | 2026</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="header-copy">
+        <span class="eyebrow">מדריך תושבות · שנת המס 2026</span>
+        <h1>איפה מקבלים הטבת מס?</h1>
+        <p>מפת היישובים המוטבים ושיעורי הזיכוי ממס הכנסה.</p>
+      </div>
+      <a class="source-link" href="https://www.gov.il/he/pages/pa090124-2" target="_blank" rel="noreferrer">
+        מקורות: רשות המסים <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="panel map-panel" aria-labelledby="map-heading">
+        <div class="section-heading map-heading">
+          <div>
+            <span class="section-kicker">01 / מפה</span>
+            <h2 id="map-heading">היישובים על המפה</h2>
+          </div>
+          <p id="map-count" class="map-count" aria-live="polite"></p>
+        </div>
+        <div class="map-shell">
+          <div id="map" role="application" aria-label="מפה אינטראקטיבית של יישובים עם הטבת מס"></div>
+          <div id="map-message" class="map-message" hidden></div>
+        </div>
+        <div id="legend" class="legend" aria-label="מקרא שיעורי הזיכוי"></div>
+      </section>
+
+      <section class="panel table-panel" aria-labelledby="table-heading">
+        <div class="section-heading table-heading">
+          <div>
+            <span class="section-kicker">02 / רשימה</span>
+            <h2 id="table-heading">כל היישובים וההטבות</h2>
+          </div>
+          <label class="search-box">
+            <span class="sr-only">חיפוש יישוב</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg>
+            <input id="search" type="search" placeholder="חיפוש יישוב" autocomplete="off">
+            <kbd>/</kbd>
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">יישוב</th>
+                <th scope="col" class="sortable" aria-sort="descending">
+                  <button id="sort-rate" type="button">שיעור זיכוי <span class="sort-indicator" aria-hidden="true">↓</span></button>
+                </th>
+                <th scope="col">תקרת הכנסה שנתית</th>
+                <th scope="col" class="place-column"><span class="sr-only">מיקום</span></th>
+              </tr>
+            </thead>
+            <tbody id="town-rows"></tbody>
+          </table>
+          <p id="empty-state" class="empty-state" hidden>לא נמצאו יישובים מתאימים.</p>
+        </div>
+        <footer class="table-footer">
+          <span id="result-count" aria-live="polite"></span>
+          <span>מיון לפי שיעור הזיכוי · הקליקו על שורה כדי לראות במפה</span>
+        </footer>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>ההטבה היא זיכוי ממס על הכנסה מזכה, בכפוף לתנאי הזכאות ולמס ששולם. התקרה היא תקרת הכנסה שנתית, לא סכום ההחזר.</p>
+      <p>נתוני מס לשנת 2026 לפי פרסומי רשות המסים: לוח ניכויים מעודכן לאפריל 2026 ועדכון יישובים מ־2 באוגוסט 2026. <a href="https://www.gov.il/he/pages/pa090124-2" target="_blank" rel="noreferrer">לצפייה בפרסומים הרשמיים</a>. נקודות המפה מבוססות על <a href="https://data.gov.il/he/datasets/lamas/localities-in-israel" target="_blank" rel="noreferrer">קובץ היישובים של הלמ״ס לשנת 2023</a>. מפה © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a>.</p>
+    </footer>
+  </body>
+</html>
