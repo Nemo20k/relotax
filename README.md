@@ -22,7 +22,7 @@ Open <http://localhost:8000>. The site must be served over HTTP because the brow
 | `data/towns-2026.json` | Generated snapshot used by the browser. Each town has an ID, name, credit rate, annual eligible-income ceiling, source/page, and optional locality code and coordinates. |
 | `scripts/build_data.py` | Offline data preparation: extracts the tax tables, matches names or codes to the CBS locality register, and converts ITM coordinates to latitude/longitude. It needs `pdfplumber`; the website does not need Python. |
 
-The data flow is: Tax Authority PDFs + CBS locality register → `build_data.py` → `data/towns-2026.json` → `app.js` → map and table. The table includes every tax row. Towns without a verified coordinate have no map marker.
+The data flow is: Tax Authority PDFs + CBS locality register → `build_data.py` → `data/towns-2026.json` → `app.js` → map and table. The table includes every tax row and computes the theoretical maximum credit as `rate × cap / 100`; the actual benefit is limited by eligible income and income tax owed. Towns without a verified coordinate have no map marker.
 
 ## Data and sources
 

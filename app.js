@@ -64,6 +64,11 @@ function renderTable() {
     cap.className = "currency";
     cap.textContent = `₪${money.format(town.cap)}`;
     capCell.append(cap);
+    const maxCreditCell = document.createElement("td");
+    const maxCredit = document.createElement("span");
+    maxCredit.className = "currency";
+    maxCredit.textContent = `₪${money.format(town.cap * town.rate / 100)}`;
+    maxCreditCell.append(maxCredit);
     const placeCell = document.createElement("td");
     const place = document.createElement("button");
     place.type = "button";
@@ -72,7 +77,7 @@ function renderTable() {
     place.disabled = !town.lat || !town.lon;
     place.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>';
     placeCell.append(place);
-    row.append(nameCell, rateCell, capCell, placeCell);
+    row.append(nameCell, rateCell, capCell, maxCreditCell, placeCell);
     row.addEventListener("click", (event) => {
       if (event.target.closest("button") && !event.target.closest("button").disabled) focusTown(town);
       else focusTown(town);
