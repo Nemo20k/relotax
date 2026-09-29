@@ -43,4 +43,8 @@ The PDF arguments are local file paths. Review changes to town names, rates, cei
 
 ## Deploy
 
-Upload the project root to a static host, keeping `data/towns-2026.json` at the same relative path. For example, [Netlify Drop](https://docs.netlify.com/start/quickstarts/netlify-drop-quickstart/) can publish the folder directly without a build command. The map and Leaflet library require internet access in visitors' browsers.
+The [GitHub Pages workflow](.github/workflows/deploy-pages.yml) publishes the site when changes are pushed to `main`; it can also be run manually from the Actions tab. It packages `index.html`, `styles.css`, `app.js`, and `data/` without a build step.
+
+To enable deployment, open the repository's **Settings → Pages** and select **GitHub Actions** as the source. After pushing to `main`, the published URL appears in the workflow's deployment environment and in **Settings → Pages**.
+
+Alternatively, upload the project root to a static host such as [Netlify Drop](https://docs.netlify.com/start/quickstarts/netlify-drop-quickstart/), keeping `data/towns-2026.json` at the same relative path. The map libraries and tiles require internet access in visitors' browsers.
