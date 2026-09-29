@@ -44,7 +44,7 @@ The PDF arguments are local file paths. Review changes to town names, rates, cei
 
 ## Deploy
 
-The [GitHub Pages workflow](.github/workflows/deploy-pages.yml) publishes the site when changes are pushed to `main`; it can also be run manually from the Actions tab. It packages `index.html`, `styles.css`, `app.js`, `social-preview.png`, and `data/` without a build step, then deploys the artifact directly. No site-configuration or data-download command runs in the workflow.
+The [GitHub Pages workflow](.github/workflows/deploy-pages.yml) publishes the site when changes are pushed to `main`; it can also be run manually from the Actions tab. It packages `index.html`, `styles.css`, `app.js`, and `data/` without a build step, then deploys the artifact directly. No site-configuration or data-download command runs in the workflow.
 
 To enable deployment, open the repository's **Settings → Pages** and select **GitHub Actions** as the source. After pushing to `main`, the published URL appears in the workflow's deployment environment and in **Settings → Pages**.
 
