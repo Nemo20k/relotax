@@ -26,7 +26,7 @@ Open <http://localhost:8000>. The site must be served over HTTP because the brow
 
 The data flow is: Tax Authority PDFs + CBS locality register → `build_data.py` → `data/towns-2026.json` → `app.js` → map and table. The table includes every tax row and computes the theoretical maximum credit as `rate × cap / 100`; the actual benefit is limited by eligible income and income tax owed. Towns without a verified coordinate have no map marker.
 
-Module, data-loading, and map-initialization failures are reported separately. If only the map fails, the loaded table and search remain available and map legend controls are not shown.
+Module, data-loading, and map-initialization failures are reported separately. If only the map fails, the loaded table and search remain available and map legend controls are not shown. With JavaScript disabled, the page explains that the interactive map and table require it.
 
 ## Data and sources
 
