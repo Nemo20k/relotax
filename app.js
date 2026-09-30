@@ -200,8 +200,10 @@ fetch("data/towns-2026.json")
     } catch {
       document.querySelector("#map-message").hidden = false;
       document.querySelector("#map-message").textContent = "לא ניתן להציג את המפה. הטבלה והחיפוש זמינים כרגיל.";
+      mapCount.textContent = "לא ניתן להציג את המפה. הטבלה והחיפוש זמינים כרגיל.";
     }
   }, () => {
     document.querySelector("#map-message").hidden = false;
     document.querySelector("#map-message").textContent = "לא ניתן לטעון את נתוני היישובים. נסו לרענן את הדף.";
+    mapCount.textContent = count.textContent = "לא ניתן לטעון את נתוני היישובים. נסו לרענן את הדף.";
   });

@@ -28,6 +28,7 @@
         const message = document.querySelector("#map-message");
         message.hidden = false;
         message.textContent = "לא ניתן לטעון את האתר. נסו לרענן את הדף.";
+        document.querySelectorAll("#map-count, #result-count").forEach((status) => status.textContent = message.textContent);
       });
     </script>
   </head>
@@ -50,7 +51,7 @@
             <span class="section-kicker">01 / מפה</span>
             <h2 id="map-heading">היישובים על המפה</h2>
           </div>
-          <p id="map-count" class="map-count" aria-live="polite"></p>
+          <p id="map-count" class="map-count" aria-live="polite">טוען נתונים…</p>
         </div>
         <div class="map-shell">
           <div id="map" role="application" aria-label="מפה אינטראקטיבית של יישובים עם הטבת מס"></div>
@@ -96,7 +97,7 @@
           <p id="empty-state" class="empty-state" hidden>לא נמצאו יישובים מתאימים.</p>
         </div>
         <footer class="table-footer">
-          <span id="result-count" aria-live="polite"></span>
+          <span id="result-count" aria-live="polite">טוען נתונים…</span>
           <span>מיון לפי שיעור הזיכוי · הקליקו על שורה כדי לראות במפה<br>* זיכוי תיאורטי מרבי = שיעור הזיכוי × תקרת ההכנסה; בפועל מוגבל להכנסה המזכה ולמס שנותר לתשלום.</span>
         </footer>
       </section>
