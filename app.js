@@ -70,9 +70,10 @@ function renderTable() {
   tbody.replaceChildren();
   const fragment = document.createDocumentFragment();
   for (const town of shown) {
+    const hasCoords = Boolean(town.lat && town.lon);
     const row = document.createElement("tr");
     row.dataset.id = town.id;
-    row.dataset.hasCoords = String(Boolean(town.lat && town.lon));
+    row.dataset.hasCoords = String(hasCoords);
     if (town.id === selectedCode) row.classList.add("is-selected");
     const nameCell = document.createElement("td");
     nameCell.textContent = town.name;
@@ -99,14 +100,11 @@ function renderTable() {
     place.type = "button";
     place.className = "place-button";
     place.setAttribute("aria-label", `הצג ${town.name} במפה`);
-    place.disabled = !town.lat || !town.lon;
+    place.disabled = !hasCoords;
     place.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>';
     placeCell.append(place);
     row.append(nameCell, rateCell, capCell, maxCreditCell, placeCell);
-    row.addEventListener("click", (event) => {
-      if (event.target.closest("button") && !event.target.closest("button").disabled) focusTown(town);
-      else focusTown(town);
-    });
+    if (hasCoords) row.addEventListener("click", () => focusTown(town));
     fragment.append(row);
   }
   tbody.append(fragment);

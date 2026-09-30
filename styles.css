@@ -91,7 +91,7 @@ thead { position: sticky; top: 0; z-index: 2; background: #fafbf9; }
 th { height: 44px; color: #758079; font-size: 11px; font-weight: 600; white-space: nowrap; }
 td, th { padding: 0 14px; }
 tbody tr { height: 46px; border-top: 1px solid #f0f2ed; transition: background .15s ease; }
-tbody tr:hover, tbody tr.is-selected { background: #f0f5f0; }
+tbody tr[data-has-coords="true"]:hover, tbody tr.is-selected { background: #f0f5f0; }
 tbody tr[data-has-coords="false"] .place-button { opacity: .32; cursor: default; }
 td { font-size: 13px; }
 td:first-child { font-weight: 600; }
