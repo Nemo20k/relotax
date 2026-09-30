@@ -2,6 +2,8 @@
 
 A small, static website for exploring Israel's 2026 locality income tax credits. The public interface is in Hebrew and has two sections: an interactive map and a searchable table with sortable data columns. There is no backend or build step.
 
+Live site: [https://nemo20k.github.io/relotax/](https://nemo20k.github.io/relotax/)
+
 ## Run locally
 
 From the project root:
