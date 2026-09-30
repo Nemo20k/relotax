@@ -26,6 +26,8 @@ Open <http://localhost:8000>. The site must be served over HTTP because the brow
 
 The data flow is: Tax Authority PDFs + CBS locality register → `build_data.py` → `data/towns-2026.json` → `app.js` → map and table. The table includes every tax row and computes the theoretical maximum credit as `rate × cap / 100`; the actual benefit is limited by eligible income and income tax owed. Towns without a verified coordinate have no map marker.
 
+Module, data-loading, and map-initialization failures are reported separately. If only the map fails, the loaded table and search remain available and map legend controls are not shown.
+
 ## Data and sources
 
 The current data snapshot contains 555 entries: 491 from pages 20–32 of the [2026 monthly deductions booklet](https://www.gov.il/BlobFolder/generalpage/income-tax-monthly-deductions-booklet/he/generalInformation_income-tax-monthly-deductions-booklet_monthly-deductions-booklet-2026.pdf), 63 from the Tax Authority's 2 August 2026 eastern confrontation line locality update, and Eilat's separate benefit from booklet page 18. The [Tax Authority employer information page](https://www.gov.il/he/pages/pa090124-2) lists the locality notices. The annual ceiling is a cap on eligible income, not a guaranteed refund or a cap on the credit itself.

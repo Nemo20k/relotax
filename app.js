@@ -193,11 +193,15 @@ fetch("data/towns-2026.json")
   .then((response) => { if (!response.ok) throw new Error("town data unavailable"); return response.json(); })
   .then((data) => {
     towns = data.towns;
-    addLegend();
     renderTable();
-    initMap();
-  })
-  .catch(() => {
+    try {
+      initMap();
+      addLegend();
+    } catch {
+      document.querySelector("#map-message").hidden = false;
+      document.querySelector("#map-message").textContent = "לא ניתן להציג את המפה. הטבלה והחיפוש זמינים כרגיל.";
+    }
+  }, () => {
     document.querySelector("#map-message").hidden = false;
-    document.querySelector("#map-message").textContent = "לא ניתן לטעון את הנתונים. כדאי לפתוח את האתר דרך שרת מקומי.";
+    document.querySelector("#map-message").textContent = "לא ניתן לטעון את נתוני היישובים. נסו לרענן את הדף.";
   });
