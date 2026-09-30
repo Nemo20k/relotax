@@ -20,23 +20,33 @@ function normalized(value) {
   return value.toLocaleLowerCase("he-IL").replace(/[\s׳״'"()־-]/g, "");
 }
 
+function updateMapCount() {
+  const visible = [...markers.values()].filter((marker) => map.hasLayer(marker)).length;
+  mapCount.textContent = `${money.format(visible)} מתוך ${money.format(towns.length)} יישובים מוצגים`;
+}
+
+function setRateVisible(rate, visible) {
+  document.querySelector(`.legend-item[data-rate="${rate}"]`)?.setAttribute("aria-pressed", String(visible));
+  markers.forEach((marker) => {
+    if (marker.options.rate === rate) visible ? marker.addTo(map) : map.removeLayer(marker);
+  });
+  updateMapCount();
+}
+
 function addLegend() {
   const legend = document.querySelector("#legend");
   [...new Set(towns.map((town) => town.rate))].sort((a, b) => a - b).forEach((rate) => {
     const item = document.createElement("button");
     item.type = "button";
     item.className = "legend-item";
+    item.dataset.rate = rate;
     item.setAttribute("aria-pressed", "true");
     const dot = document.createElement("span");
     dot.className = "legend-dot";
     dot.style.background = RATE_COLORS[rate];
     item.append(dot, document.createTextNode(`${rate}%`));
     item.addEventListener("click", () => {
-      const on = item.getAttribute("aria-pressed") !== "false";
-      item.setAttribute("aria-pressed", String(!on));
-      markers.forEach((marker) => {
-        if (marker.options.rate === rate) on ? map.removeLayer(marker) : marker.addTo(map);
-      });
+      setRateVisible(rate, item.getAttribute("aria-pressed") === "false");
     });
     legend.append(item);
   });
@@ -111,6 +121,7 @@ function focusTown(town) {
   row?.classList.add("is-selected");
   const marker = markers.get(town.id);
   if (marker) {
+    setRateVisible(town.rate, true);
     map.setView(marker.getLatLng(), Math.max(map.getZoom(), 10), { animate: true });
     marker.openPopup();
   }
@@ -147,7 +158,7 @@ function initMap() {
     bounds.push([town.lat, town.lon]);
   }
   if (bounds.length) map.fitBounds(bounds, { padding: [18, 18], maxZoom: 7 });
-  mapCount.textContent = `${money.format(bounds.length)} מתוך ${money.format(towns.length)} יישובים מוצגים`;
+  updateMapCount();
 }
 
 sortButtons.forEach((button) => button.addEventListener("click", () => {

@@ -18,7 +18,7 @@ Open <http://localhost:8000>. The site must be served over HTTP because the brow
 | --- | --- |
 | `index.html` | Hebrew, right-to-left page with the map and table sections; loads Leaflet and MapLibre GL from CDNs. |
 | `styles.css` | Responsive layout and visual styling. |
-| `app.js` | Fetches the static JSON, renders the Leaflet markers and table, and handles search, sorting by town, rate, income ceiling, or maximum credit, legend filters, and map/table selection. Rate sorts descending by default. |
+| `app.js` | Fetches the static JSON, renders the Leaflet markers and table, and handles search, sorting by town, rate, income ceiling, or maximum credit, legend filters, and map/table selection. Selecting a town restores its rate layer when filtered out. Rate sorts descending by default. |
 | `favicon.svg`, `apple-touch-icon.png` | Browser favicon and 180×180 iOS home-screen icon. |
 | `social-preview.png` | 1200×630 social preview used by the page's Open Graph metadata. |
 | `data/towns-2026.json` | Generated snapshot used by the browser. Each town has an ID, name, credit rate, annual eligible-income ceiling, source/page, and optional locality code and coordinates. |
