@@ -128,9 +128,9 @@ td:first-child { font-weight: 600; }
   .legend { padding-inline: 16px; gap: 8px 12px; }
   .table-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
   .search-box { width: 100%; }
-  td, th { padding-inline: 12px; }
+  td, th { padding-inline: 6px; }
   tbody tr { height: 48px; }
-  .place-column { width: 38px; }
+  .place-column, tbody td:last-child { display: none; }
   .table-footer { flex-direction: column; gap: 3px; padding-inline: 16px; }
   .page-footer { padding-bottom: 28px; }
 }
