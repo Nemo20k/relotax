@@ -128,6 +128,7 @@ td:first-child { font-weight: 600; }
   .legend { padding-inline: 16px; gap: 8px 12px; }
   .table-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
   .search-box { width: 100%; }
+  .search-box kbd { display: none; }
   td, th { padding-inline: 6px; }
   tbody tr { height: 48px; }
   .place-column, tbody td:last-child { display: none; }
